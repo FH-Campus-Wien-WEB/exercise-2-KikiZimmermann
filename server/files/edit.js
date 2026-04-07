@@ -67,14 +67,21 @@ function putMovie() {
     - Send the movie data as JSON
   */
 
+  const movie = getMovie();
+
   const xhr = new XMLHttpRequest();
+  xhr.open("PUT", "/movies/" + movie.imdbID);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
   xhr.onload = function () {
-    if (xhr.status == 200 || xhr.status === 204) {
+    if (xhr.status === 200 || xhr.status === 201 || xhr.status === 204) {
       location.href = "index.html";
     } else {
       alert("Saving of movie data failed. Status code was " + xhr.status);
     }
   };
+
+  xhr.send(JSON.stringify(movie));
 }
 
 /** Loading and setting the movie data for the movie with the passed imdbID */
@@ -88,9 +95,9 @@ xhr.onload = function () {
   } else {
     alert(
       "Loading of movie data failed. Status was " +
-        xhr.status +
-        " - " +
-        xhr.statusText,
+      xhr.status +
+      " - " +
+      xhr.statusText,
     );
   }
 };

@@ -1,41 +1,116 @@
 @import url(base.css);
 
-h1 {
-  font-size: 200%;
-  margin: 8px 0px;
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 img {
-  border-radius: 12px;
+  border-radius: 10px;
+  max-width: 50%;
 }
 
 article {
-  background-color: lightgray;
-  border-radius: 16px;
-  padding: 16px;
-  margin: 2vw;
+  background-color: #cfcfcf;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex: 1 1 400px;
+  max-width: 600px;
+
+  border-style:dashed;
+  border-width: 3px;
+  border-color: #640808;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  cursor: pointer;
 }
 
-span {
-  margin-right: 4px;
+article:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  background-color: #82bbaf;
 }
 
-.genre {
-  padding: 4px 8px;
-  border: solid black 1px;
-  border-radius: 6px;
-  background-color: darkgray;
-  font-weight: bold;
+button {
+  margin-top: auto;
+  align-self: center;
 }
 
-input {
-  width: 100%;
+.stars {
+  display: inline-flex;
+  align-items: center;
 }
 
-select {
-  width: 100%;
+.star {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  font-size: 1.6rem;
+  margin-right: 2px;
+  
+  vertical-align: middle;
+  color: transparent;
+  -webkit-text-stroke: 1px #c2920e;
 }
 
-textarea {
-  width: 100%;
+/* voller Stern */
+.star.full {
+  color: #c2920e;
+  -webkit-text-stroke: 1px #c2920e;
+}
+
+/* leerer Stern */
+.star.empty {
+  color: transparent;
+  -webkit-text-stroke: 1px #c2920e;
+}
+
+/* halber Stern */
+.star.half {
+  color: transparent;
+  -webkit-text-stroke: 1px #c2920e;
+}
+
+.star.half::before {
+  content: "★";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  color: #c2920e;
+  line-height: 1em;
+  -webkit-text-stroke: 1px;
+}
+
+.stars:hover .star.full {
+  color: #ffca28;
+  -webkit-text-stroke: 1px #ffca28;
+}
+
+.stars:hover .star.empty {
+  -webkit-text-stroke: 1px #ffca28;
+}
+
+.stars:hover .star.half {
+  -webkit-text-stroke: 1px #ffca28;
+}
+
+.stars:hover .star.half::before {
+  color: #ffca28;
 }
